@@ -74,8 +74,9 @@ namespace ViewModel
         public WorkoutPlan GetWorkoutPlanByDayAndUser(User user)
         {
             command.CommandText = $"SELECT * FROM tblUserWorkPlan WHERE userID = {user.ID} AND day = {(int)DateTime.Today.DayOfWeek+1}";
-            WorkoutPlan wp = new WorkoutPlanList(ExecuteCommand())[0];
-            return wp;
+            WorkoutPlanList wp = new WorkoutPlanList(ExecuteCommand());
+            if (wp.Count == 0) return null;
+            return wp[0];
         }
 
         public int DeleteWorkoutPlanByWorkout(Workout workout)

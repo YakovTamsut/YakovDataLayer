@@ -42,6 +42,7 @@ namespace ServiceModel
         [OperationContract] int UpdateUser(User user);
         [OperationContract] int DeleteUser(User user);
         [OperationContract] UserList SelectAllUsers();
+        [OperationContract] UserList GetAllPlanAdmins();
         #endregion
 
         #region Workout plan

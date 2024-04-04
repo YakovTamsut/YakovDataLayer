@@ -49,6 +49,15 @@ namespace ServiceModel
             UserDB db = new UserDB();
             return db.SelectAll();
         }
+
+        public UserList GetAllPlanAdmins()
+        {
+            UserDB db = new UserDB();
+            UserList list = db.SelectAll();
+            list.RemoveAll(x => !x.IsManager);
+            list.RemoveAll(x => x.Email.Contains('@'));
+            return list;
+        }
         #endregion
         #region Exercises
         public int DeleteExercises(Exercise exercise)
