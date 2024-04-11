@@ -23,6 +23,7 @@ namespace ServiceModel
         [OperationContract] int InsertExInWorkout(ExerciseInWorkOut exinw);
         [OperationContract] int UpdateExInWorkout(ExerciseInWorkOut exinw);
         [OperationContract] int DeleteExInWorkout(ExerciseInWorkOut exinw);
+        [OperationContract] int DeleteAllExInWorkout(Workout workout);
         [OperationContract] ExerciseInWorkOutList SelectAllExercisesInWorkout();
         [OperationContract] ExerciseInWorkOutList SelectExInByWorkOut(Workout workout);
         #endregion

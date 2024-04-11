@@ -108,6 +108,12 @@ namespace ServiceModel
         }
         public int UpdateWorkout(Workout workout)
         {
+            DeleteAllExInWorkout(workout);
+            foreach (ExerciseInWorkOut eiw in workout.ExInWorkout)
+            {
+                eiw.Workout = new Workout { ID = workout.ID };
+                InsertExInWorkout(eiw);
+            }
             WorkoutDB db = new WorkoutDB();
             return db.UpdateWorkout(workout);
         }
@@ -140,6 +146,11 @@ namespace ServiceModel
         {
             ExerciseInWorkOutDB db = new ExerciseInWorkOutDB();
             return db.DeleteWorkout(exinw);
+        }
+        public int DeleteAllExInWorkout(Workout workout)
+        {
+            ExerciseInWorkOutDB db = new ExerciseInWorkOutDB();
+            return db.DeleteWorkout(workout);
         }
         public ExerciseInWorkOutList SelectExInByWorkOut(Workout workout)
         {
@@ -179,6 +190,12 @@ namespace ServiceModel
         {
             WorkoutPlanDB db = new WorkoutPlanDB();
             return db.Delete(plan);
+        }
+
+        public int DeleteAllWorkoutPlan(Workout workout)
+        {
+            ExerciseInWorkOutDB db = new ExerciseInWorkOutDB();
+            return db.DeleteWorkout(workout);
         }
 
         public Workout SelectWorkoutById(int id)

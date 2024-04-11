@@ -53,22 +53,26 @@ namespace ViewModel
                 return null;
             return list[0];
         }
-        public int InsertWorkout(ExerciseInWorkOut workout)
+        public int InsertWorkout(ExerciseInWorkOut exinwo)
         {
             command.CommandText = "INSERT INTO tblExInWorkout (workoutID,exercisesID,reps,sets) VALUES (@workoutID,@exercisesID,@reps,@sets)";
-            LoadParameters(workout);
+            LoadParameters(exinwo);
             return ExecuteCRUD();
         }
-        public int UpdateWorkout(ExerciseInWorkOut workout)
+        public int UpdateWorkout(ExerciseInWorkOut exinwo)
         {
             command.CommandText = "UPDATE tblExInWorkout SET workoutID = @workoutID,exercisesID = @exercisesID,reps = @reps,sets = @sets WHERE ID = @ID";
-            LoadParameters(workout);
+            LoadParameters(exinwo);
             return ExecuteCRUD();
         }
-        public int DeleteWorkout(ExerciseInWorkOut workout)
+        public int DeleteWorkout(ExerciseInWorkOut exinwo)
         {
-            command.CommandText = $"DELETE FROM tblExInWorkout WHERE ID = {workout.ID}";
-            LoadParameters(workout);
+            command.CommandText = $"DELETE FROM tblExInWorkout WHERE ID = {exinwo.ID}";
+            return ExecuteCRUD();
+        }
+        public int DeleteWorkout(Workout workout)
+        {
+            command.CommandText = $"DELETE FROM tblExInWorkout WHERE workoutID = {workout.ID}";
             return ExecuteCRUD();
         }
 
