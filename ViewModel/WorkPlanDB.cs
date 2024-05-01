@@ -85,5 +85,11 @@ namespace ViewModel
             return ExecuteCRUD();
         }
 
+        public int DeletetPlanByUser(User user)
+        {
+            command.CommandText = $"DELETE * FROM tblUserWorkPlan WHERE userID = {user.ID}";
+            return ExecuteCRUD();
+        }
+
     }
 }

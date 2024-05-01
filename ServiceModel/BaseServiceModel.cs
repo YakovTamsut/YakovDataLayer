@@ -15,7 +15,11 @@ namespace ServiceModel
         #region User
         public int DeleteUser(User user)
         {
-            UserDB db = new UserDB();
+            WorkoutPlanDB planDB=new WorkoutPlanDB();
+            planDB.DeletetPlanByUser(user);
+            WorkoutDB workoutDB=new WorkoutDB();
+            workoutDB.DeleteWorkoutByUser(user);
+            UserDB db = new UserDB();            
             return db.DeleteUser(user);
         }
         public User Login(User user)
@@ -41,7 +45,8 @@ namespace ServiceModel
         public int NewUser(User user)
         {
             UserDB db = new UserDB();
-            return db.InsertUser(user);
+            db.InsertUser(user);
+            return SelectAllUsers().Last().ID;
         }
 
         public UserList SelectAllUsers()

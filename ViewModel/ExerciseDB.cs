@@ -67,8 +67,7 @@ namespace ViewModel
         }
         public int DeleteExercises(Exercise exercise)
         {
-            command.CommandText = "DELETE FROM tblExercises WHERE ID =@ID";
-            LoadParameters(exercise);
+            command.CommandText = $"DELETE FROM tblExercises WHERE ID ={exercise.ID}";
             return ExecuteCRUD();
         }
         public bool IsExist(string name)

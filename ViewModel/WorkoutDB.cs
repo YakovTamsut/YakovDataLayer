@@ -65,7 +65,11 @@ namespace ViewModel
         public int DeleteWorkout(Workout workout)
         {
             command.CommandText = $"DELETE FROM tblWorkouts WHERE ID = {workout.ID}";
-            LoadParameters(workout);
+            return ExecuteCRUD();
+        }
+        public int DeleteWorkoutByUser(User user)
+        {
+            command.CommandText = $"DELETE FROM tblWorkouts WHERE ID = {user.ID}";
             return ExecuteCRUD();
         }
     }
